@@ -1,9 +1,9 @@
-package com.delivery;
+package com.demo.bookmyticket.delivery;
 
 import com.google.gson.Gson;
-import com.model.*;
-import com.usecase.booking.Booking;
-import com.usecase.getdata.GetData;
+import com.demo.bookmyticket.model.*;
+import com.demo.bookmyticket.usecase.booking.Booking;
+import com.demo.bookmyticket.usecase.getdata.GetData;
 
 import java.util.List;
 

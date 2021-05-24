@@ -1,6 +1,6 @@
-package com.repository.movies;
+package com.demo.bookmyticket.repository.movies;
 
-import com.model.Movies;
+import com.demo.bookmyticket.model.Movies;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.repository.cityTheater;
+package com.demo.bookmyticket.repository.cityTheater;
 
-import com.model.Theater;
+import com.demo.bookmyticket.model.Theater;
 
 import java.util.ArrayList;
 import java.util.HashMap;

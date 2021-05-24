@@ -1,6 +1,6 @@
-package com.repository.user;
+package com.demo.bookmyticket.repository.user;
 
-import com.model.User;
+import com.demo.bookmyticket.model.User;
 
 import java.util.HashMap;
 

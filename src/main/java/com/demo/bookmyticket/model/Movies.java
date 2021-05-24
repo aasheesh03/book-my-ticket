@@ -1,4 +1,4 @@
-package com.model;
+package com.demo.bookmyticket.model;
 public  class Movies {
 
     int movieId;

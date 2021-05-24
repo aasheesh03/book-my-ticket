@@ -1,12 +1,12 @@
-package com.usecase.booking;
+package com.demo.bookmyticket.usecase.booking;
 
-import com.model.Constants;
-import com.model.Seat;
-import com.model.Theater;
-import com.model.User;
-import com.repository.movies.MoviesDao;
-import com.repository.theater.TheaterDao;
-import com.repository.user.UserDao;
+import com.demo.bookmyticket.model.Constants;
+import com.demo.bookmyticket.model.Seat;
+import com.demo.bookmyticket.model.Theater;
+import com.demo.bookmyticket.model.User;
+import com.demo.bookmyticket.repository.movies.MoviesDao;
+import com.demo.bookmyticket.repository.theater.TheaterDao;
+import com.demo.bookmyticket.repository.user.UserDao;
 
 import java.util.List;
 

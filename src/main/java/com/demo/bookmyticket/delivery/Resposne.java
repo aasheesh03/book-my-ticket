@@ -1,4 +1,4 @@
-package com.delivery;
+package com.demo.bookmyticket.delivery;
 
 import com.google.gson.JsonElement;
 

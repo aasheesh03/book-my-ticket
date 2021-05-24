@@ -1,11 +1,11 @@
-package com.usecase.getdata;
+package com.demo.bookmyticket.usecase.getdata;
 
-import com.model.*;
-import com.repository.cities.CitiesDao;
-import com.repository.cityTheater.CityTheaterDao;
-import com.repository.movies.MoviesDao;
-import com.repository.theater.TheaterDao;
-import com.repository.user.UserDao;
+import com.demo.bookmyticket.model.*;
+import com.demo.bookmyticket.repository.cities.CitiesDao;
+import com.demo.bookmyticket.repository.cityTheater.CityTheaterDao;
+import com.demo.bookmyticket.repository.movies.MoviesDao;
+import com.demo.bookmyticket.repository.theater.TheaterDao;
+import com.demo.bookmyticket.repository.user.UserDao;
 
 import java.util.ArrayList;
 import java.util.List;

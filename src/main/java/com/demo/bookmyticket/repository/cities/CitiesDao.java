@@ -1,6 +1,6 @@
-package com.repository.cities;
+package com.demo.bookmyticket.repository.cities;
 
-import com.model.City;
+import com.demo.bookmyticket.model.City;
 
 import java.util.HashMap;
 import java.util.List;
