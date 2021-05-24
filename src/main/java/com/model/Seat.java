@@ -1,6 +1,6 @@
 package com.model;
 
-import java.util.HashMap;
+
 
 public class Seat {
     int seatID;
@@ -9,7 +9,7 @@ public class Seat {
 
     public Seat(int seatID, Constants.SeatStatus status) {
         this.seatID = seatID;
-        this.status=status;
+        this.status = status;
     }
 
     public int getSeatID() {
@@ -25,7 +25,7 @@ public class Seat {
     }
 
     public void setStatus(Constants.SeatStatus seatStatus) {
-        this.status=seatStatus;
+        this.status = seatStatus;
     }
 
 

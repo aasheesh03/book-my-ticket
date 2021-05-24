@@ -5,36 +5,24 @@ import com.model.*;
 import com.usecase.booking.Booking;
 import com.usecase.getdata.GetData;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.util.List;
 
 import static spark.Spark.*;
 
 public class Server {
-    int port = 9000;
 
     public void startServer() {
         System.out.println("starting service on 9000");
         port(9000);
-        /*HttpServer server = null;
-        try {
-            server = HttpServer.create(new InetSocketAddress(port), 0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("server started at " + port);
-        server.createContext("/ping", new PingHandler());
-        server.createContext("/getcity", new GetCities());
-        server.createContext("/bookseat", new BookSeat());
-        server.setExecutor(null);
-        server.start();*/
         get("/hello", (req, res) -> "Hello World");
         get("/getcity", (req, res) -> {
             res.type("application/json");
             int cityId = 0;
             GetData getData = new GetData();
-            cityId = Integer.parseInt(req.queryParams("cityId"));
+            String reqCityId = req.queryParams("cityid");
+            if (reqCityId != null) {
+                cityId = Integer.parseInt(reqCityId);
+            }
             List<City> cityList = getData.getCities(cityId);
             return new Gson()
                     .toJson(new Resposne(200, "Success", new Gson()
@@ -49,15 +37,39 @@ public class Server {
             int userID = 0;
             int movieID = 0;
 
-
-            theaterID = Integer.parseInt(req.queryParams("theaterId"));
-            userID = Integer.parseInt(req.queryParams("userId"));
-            movieID = Integer.parseInt(req.queryParams("movieId"));
-            String[] strArray = req.queryParams("seatIds").toString().split(",");
-            String reqMovieTime= req.queryParams("timeslot");
-            if (reqMovieTime==null){
+            String reqTheaterId = req.queryParams("theaterid");
+            if (reqTheaterId == null) {
                 return new Gson()
-                        .toJson(new Resposne(401, "Invalid Parameters"));
+                        .toJson(new Resposne(400, "Invalid Parameters"));
+            }
+            theaterID = Integer.parseInt(reqTheaterId);
+            String reqUserId = req.queryParams("userid");
+            if (reqUserId == null) {
+                return new Gson()
+                        .toJson(new Resposne(400, "Invalid Parameters"));
+            }
+            userID = Integer.parseInt(reqUserId);
+            String reqMovieId = req.queryParams("movieid");
+            if (reqMovieId == null) {
+                return new Gson()
+                        .toJson(new Resposne(400, "Invalid Parameters"));
+            }
+            movieID = Integer.parseInt(reqMovieId);
+            String reqSeatIds = req.queryParams("seatids");
+            if (reqSeatIds == null) {
+                return new Gson()
+                        .toJson(new Resposne(400, "Invalid Parameters"));
+            }
+            String[] strArray = reqSeatIds.toString().split(",");
+            if (strArray.length == 0) {
+                return new Gson()
+                        .toJson(new Resposne(400, "Invalid Parameters"));
+            }
+
+            String reqMovieTime = req.queryParams("timeslot");
+            if (reqMovieTime == null) {
+                return new Gson()
+                        .toJson(new Resposne(400, "Invalid Parameters"));
             }
             int timeSlot = Integer.parseInt(reqMovieTime);
             int size = strArray.length;
@@ -66,7 +78,7 @@ public class Server {
                 arr[i] = Integer.parseInt(strArray[i]);
             }
 
-            if (!booking.bookTicket(arr, theaterID, userID, movieID,Constants.MovieTimeSlots.valueOf(timeSlot)))
+            if (!booking.bookTicket(arr, theaterID, userID, movieID, Constants.MovieTimeSlots.valueOf(timeSlot)))
                 return new Gson()
                         .toJson(new Resposne(403, "Failure"));
 
@@ -79,9 +91,11 @@ public class Server {
             res.type("application/json");
             int cityId = 0;
             GetData getData = new GetData();
-            cityId = Integer.parseInt(req.queryParams("cityId"));
+            String reqCityId = req.queryParams("cityid");
+            if (reqCityId != null) {
+                cityId = Integer.parseInt(reqCityId);
+            }
             List<Theater> cityList = getData.getTheater(cityId);
-
 
 
             return new Gson()
@@ -93,12 +107,11 @@ public class Server {
             res.type("application/json");
             int theaterId = 0;
             GetData getData = new GetData();
-            String reqTheaterId= req.queryParams("theaterId");
-            if (reqTheaterId==null){
-                return new Gson()
-                        .toJson(new Resposne(401, "Invalid Parameters"));
+            String reqTheaterId = req.queryParams("theaterid");
+            if (reqTheaterId != null) {
+                theaterId = Integer.parseInt(reqTheaterId);
             }
-            theaterId = Integer.parseInt(reqTheaterId);
+
             List<Movies> movieList = getData.getMovies(theaterId);
             return new Gson()
                     .toJson(new Resposne(200, "Success", new Gson()
@@ -108,29 +121,21 @@ public class Server {
         get("/getseats", (req, res) -> {
             res.type("application/json");
             int theaterId = 0;
-            int movieId=0;
             GetData getData = new GetData();
-            String reqTheaterId= req.queryParams("theaterId");
-            if (reqTheaterId==null){
+            String reqTheaterId = req.queryParams("theaterid");
+            if (reqTheaterId == null) {
                 return new Gson()
-                        .toJson(new Resposne(401, "Invalid Parameters"));
+                        .toJson(new Resposne(400, "Invalid Parameters"));
             }
             theaterId = Integer.parseInt(reqTheaterId);
 
-            String reqMovieId= req.queryParams("movieId");
-            if (reqMovieId==null){
+            String reqMovieTime = req.queryParams("timeslot");
+            if (reqMovieTime == null) {
                 return new Gson()
-                        .toJson(new Resposne(401, "Invalid Parameters"));
-            }
-
-            String reqMovieTime= req.queryParams("timeslot");
-            if (reqMovieTime==null){
-                return new Gson()
-                        .toJson(new Resposne(401, "Invalid Parameters"));
+                        .toJson(new Resposne(400, "Invalid Parameters"));
             }
             int timeSlot = Integer.parseInt(reqMovieTime);
-            List<Seat> seatList = getData.getSeatList(theaterId,movieId, Constants.MovieTimeSlots.valueOf(timeSlot));
-
+            List<Seat> seatList = getData.getSeatList(theaterId, Constants.MovieTimeSlots.valueOf(timeSlot));
 
 
             return new Gson()

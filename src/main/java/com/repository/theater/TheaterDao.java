@@ -1,41 +1,38 @@
 package com.repository.theater;
 
-import com.model.City;
 import com.model.Theater;
-import com.model.User;
-import com.repository.cities.CitiesDao;
-import com.repository.movies.MoviesDao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TheaterDao {
 
-    private HashMap<Integer , Theater> theaterMap=new HashMap<Integer,Theater>();
+    private HashMap<Integer, Theater> theaterMap = new HashMap<Integer, Theater>();
     private static TheaterDao instance;
 
 
-    public void addTheater(Theater theater){
-        theaterMap.put(theater.getTheaterId(),theater);
+    public void addTheater(Theater theater) {
+        theaterMap.put(theater.getTheaterId(), theater);
 
     }
 
-    public Theater getTheater(int theaterID){
-        return theaterMap.getOrDefault(theaterID,null);
+    public Theater getTheater(int theaterID) {
+        return theaterMap.getOrDefault(theaterID, null);
     }
-    public List<Theater> getAllTheaterList(){
+
+    public List<Theater> getAllTheaterList() {
         return theaterMap.values().stream()
                 .collect(Collectors.toList());
     }
 
-    private TheaterDao(){
+    private TheaterDao() {
 
     }
-    public  static  synchronized TheaterDao getInstance(){
-        if (instance==null)
-            instance=new TheaterDao();
+
+    public static synchronized TheaterDao getInstance() {
+        if (instance == null)
+            instance = new TheaterDao();
         return instance;
     }
 }

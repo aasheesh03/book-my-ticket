@@ -10,10 +10,12 @@ public class Constants {
         EVENING(3),
         NIGHT(4);
         private int value;
-        private static HashMap MovieTimeSlotsMap=new HashMap();
-        MovieTimeSlots(int value){
-            this.value=value;
+        private static HashMap MovieTimeSlotsMap = new HashMap();
+
+        MovieTimeSlots(int value) {
+            this.value = value;
         }
+
         static {
             for (MovieTimeSlots movieTimeSlots : MovieTimeSlots.values()) {
                 MovieTimeSlotsMap.put(movieTimeSlots.value, movieTimeSlots);

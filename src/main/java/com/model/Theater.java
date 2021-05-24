@@ -9,8 +9,9 @@ public class Theater {
     int theaterId;
     String theaterName;
     City city;
-    HashMap<Constants.MovieTimeSlots,Movies> moviesMap=new HashMap<Constants.MovieTimeSlots,Movies>();;
-    transient HashMap<Constants.MovieTimeSlots,List<Seat>>  seatMap= new HashMap<Constants.MovieTimeSlots,List<Seat>>();
+    HashMap<Constants.MovieTimeSlots, Movies> moviesMap = new HashMap<Constants.MovieTimeSlots, Movies>();
+
+    transient HashMap<Constants.MovieTimeSlots, List<Seat>> seatMap = new HashMap<Constants.MovieTimeSlots, List<Seat>>();
     float rating;
 
     public int getTheaterId() {
@@ -41,7 +42,7 @@ public class Theater {
         return this.seatMap.get(timeSlot);
     }
 
-    public void setSeats(Constants.MovieTimeSlots timeSlot,List<Seat> seats) {
+    public void setSeats(Constants.MovieTimeSlots timeSlot, List<Seat> seats) {
         this.seatMap.put(timeSlot, seats);
     }
 
@@ -51,8 +52,8 @@ public class Theater {
                 .collect(Collectors.toList());
     }
 
-    public void setMoviesWithTime(HashMap<Constants.MovieTimeSlots,Movies> movies) {
-        this.moviesMap= movies;
+    public void setMoviesWithTime(HashMap<Constants.MovieTimeSlots, Movies> movies) {
+        this.moviesMap = movies;
     }
 
     public float getRating() {
@@ -63,7 +64,7 @@ public class Theater {
         this.rating = rating;
     }
 
-    public Theater(int theaterId, String theaterName, City city, HashMap<Constants.MovieTimeSlots,Movies> movies, HashMap<Constants.MovieTimeSlots, List<Seat>> seatMap, float rating) {
+    public Theater(int theaterId, String theaterName, City city, HashMap<Constants.MovieTimeSlots, Movies> movies, HashMap<Constants.MovieTimeSlots, List<Seat>> seatMap, float rating) {
         this.theaterId = theaterId;
         this.theaterName = theaterName;
         this.city = city;
