@@ -8,15 +8,24 @@ import com.demo.bookmyticket.repository.theater.TheaterDao;
 import com.demo.bookmyticket.repository.user.UserDao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GetData {
 
-    UserDao userDao = UserDao.getInstance();
-    TheaterDao theaterDao = TheaterDao.getInstance();
-    MoviesDao movieDao = MoviesDao.getInstance();
-    CitiesDao citiesDao = CitiesDao.getInstance();
-    CityTheaterDao cityTheaterDao = CityTheaterDao.getInstance();
+     UserDao userDao ;
+    TheaterDao theaterDao;
+    MoviesDao movieDao;
+    CitiesDao citiesDao;
+    CityTheaterDao cityTheaterDao ;
+
+    public GetData(UserDao userDao, TheaterDao theaterDao, MoviesDao movieDao, CitiesDao citiesDao, CityTheaterDao cityTheaterDao) {
+        this.userDao = userDao;
+        this.theaterDao = theaterDao;
+        this.movieDao = movieDao;
+        this.citiesDao = citiesDao;
+        this.cityTheaterDao = cityTheaterDao;
+    }
 
 
     public List<Seat> getSeatList(int theaterID, Constants.MovieTimeSlots timeslot) {
@@ -45,13 +54,13 @@ public class GetData {
         }
     }
 
-    public List<Movies> getMovies(int theaterId) {
+    public HashMap<Constants.MovieTimeSlots,Movies> getMovies(int theaterId) {
+
         if (theaterId != 0) {
-            return theaterDao.getTheater(theaterId).getMovies();
+            return theaterDao.getTheater(theaterId).getMoviesWithTime();
         }
-        return movieDao.getAllMovies();
-
-
+        HashMap<Constants.MovieTimeSlots,Movies> map=new HashMap<Constants.MovieTimeSlots,Movies>();
+        return map;
     }
 
 }

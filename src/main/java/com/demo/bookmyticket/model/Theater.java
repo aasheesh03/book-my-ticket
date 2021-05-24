@@ -52,6 +52,10 @@ public class Theater {
                 .collect(Collectors.toList());
     }
 
+    public HashMap<Constants.MovieTimeSlots,Movies> getMoviesWithTime() {
+        return this.moviesMap;
+    }
+
     public void setMoviesWithTime(HashMap<Constants.MovieTimeSlots, Movies> movies) {
         this.moviesMap = movies;
     }

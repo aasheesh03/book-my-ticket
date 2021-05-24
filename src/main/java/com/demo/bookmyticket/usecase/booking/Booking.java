@@ -12,9 +12,15 @@ import java.util.List;
 
 public class Booking {
 
-    UserDao userDao = UserDao.getInstance();
-    TheaterDao theaterDao = TheaterDao.getInstance();
-    MoviesDao movieDao = MoviesDao.getInstance();
+    UserDao userDao;
+    TheaterDao theaterDao;
+    MoviesDao movieDao;
+
+    public Booking(UserDao userDao, TheaterDao theaterDao, MoviesDao movieDao) {
+        this.userDao = userDao;
+        this.theaterDao = theaterDao;
+        this.movieDao = movieDao;
+    }
 
     public boolean bookTicket(int[] seatIDs, int theaterID, int userId, int movieID, Constants.MovieTimeSlots timeslot) {
 

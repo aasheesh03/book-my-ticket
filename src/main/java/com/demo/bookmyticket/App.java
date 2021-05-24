@@ -7,6 +7,8 @@ import com.demo.bookmyticket.repository.cityTheater.CityTheaterDao;
 import com.demo.bookmyticket.repository.movies.MoviesDao;
 import com.demo.bookmyticket.repository.theater.TheaterDao;
 import com.demo.bookmyticket.repository.user.UserDao;
+import com.demo.bookmyticket.usecase.booking.Booking;
+import com.demo.bookmyticket.usecase.getdata.GetData;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -72,7 +74,15 @@ public class App {
         cityTheaterDao.addCityTheaterMap(2, t3);
         cityTheaterDao.addCityTheaterMap(3, t1);
         cityTheaterDao.addCityTheaterMap(3, t3);
-        Server server = new Server();
+
+
+        //invoke Useacse object with Dao injection
+
+        Booking booking =new Booking(userDao,theaterDao,movieDao);
+        GetData getData=new GetData(userDao,theaterDao,movieDao,citiesDao,cityTheaterDao);
+
+        //invoke delivery object with usecase injection
+        Server server = new Server(booking,getData);
         server.startServer();
 
     }
